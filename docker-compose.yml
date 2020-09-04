@@ -1,0 +1,23 @@
+  
+version: '3'
+services:
+  nodejs-server:
+    build:
+      context: ./api
+      dockerfile: Dockerfile-dev
+    ports:
+      - "3080:3080"
+    container_name: node-api
+    volumes:
+       - ./api:/usr/src/app/api
+       - /usr/src/app/api/node_modules
+  vue-ui:
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile-dev
+    ports:
+      - "8080:8080"
+    container_name: vue-ui
+    volumes:
+       - ./my-app:/usr/src/app/my-app
+       - /usr/src/app/my-app/node_modules
